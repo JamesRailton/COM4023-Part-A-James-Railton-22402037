@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Number 1: Add a new song");
         System.out.println("Number 2: Remove a song");
         System.out.println("Number 3: Print a list of all songs");
-        System.out.println("Number 4: Print a lost of songs over a given number of plays");
+        System.out.println("Number 4: Print a list of songs over a given number of plays");
 
         // Switch block to handle user input
         try {
