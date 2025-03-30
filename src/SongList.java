@@ -3,7 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SongList {
-    List<Song> songList = new ArrayList<>();
+    List<Song> songList = new ArrayList<>(); // ArrayList to store songs
+
+    // Constructor to initialise the song list with some sample songs
     public SongList() {
         songList.add(new Song("Shape of You", "Ed Sheeran", 3542));
         songList.add(new Song("Blinding Lights", "The Weeknd", 2875));
@@ -31,12 +33,16 @@ public class SongList {
         songList.add(new Song("7 Rings", "Ariana Grande", 2254));
         songList.add(new Song("Sicko Mode", "Travis Scott", 1793));
     }
+
+    // Method to add a new song to the list
     public void addSong() {
         Scanner scanner = new Scanner(System.in);
         String songName;
         String artistName;
         int playCount;
+
         try{
+            // Prompt user for song details
             System.out.println("Enter Song Name: ");
             songName = scanner.nextLine();
             System.out.println("Enter Artist Name: ");
@@ -44,38 +50,72 @@ public class SongList {
             System.out.println("Enter Play Count: ");
             playCount = scanner.nextInt();
 
-            songList.add(new Song(songName, artistName, playCount));
+            songList.add(new Song(songName, artistName, playCount)); // Add new song to the list
             System.out.println("Song Successfully Added");
-            displaySongList();
+            displaySongList(); // Display the updated song list
         } catch(Exception e){
-            System.out.println("An error has occurred");
+            System.out.println("An error has occurred"); // Handle any exceptions
         }
 
     }
+
+    // Method to remove a song from the list
     public void removeSong() {
         int removeSong;
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter the song number in the list below to remove song");
-        displaySongList();
+        displaySongList(); // Display the list of songs
+
         try{
             removeSong = scanner.nextInt();
-            songList.remove(removeSong - 1);
-            System.out.println("Song Removed, Updated list below");
-            displaySongList();
+            songList.remove(removeSong - 1); // Remove the song at the specified index
+            System.out.println("Song Removed (Song number removed has been replaced with one above if available), " +
+                    "Updated list below");
+            displaySongList(); // Display the updated song list
         }catch(Exception e){
-            System.out.println("An error has occurred");
+            System.out.println("An error has occurred"); // Handle any exceptions
         }
     }
+
+    // Method to display the list of all songs
     public void displaySongList(){
-        System.out.println("List of all songs stored");
+        System.out.println("List of all songs");
+
+        // Loop through the song list and print each song's details
         for(int i = 0; i < songList.size(); i++){
-            System.out.printf("Song Number %d | Artist Name: %s | Play Count: %s %n", i + 1, songList.get(i).getArtistName(),
-                    songList.get(i).getPlayCount());
+            System.out.printf("Song Number %d | Song Name: %s | Artist Name: %s | Play Count: %s %n", i + 1,
+                    songList.get(i).getSongName(), songList.get(i).getArtistName(),
+                    songList.get(i).getPlayCount()); // Print song details
         }
     }
-    public void displaySongOverPlayNumber(){
 
+    // Method to display songs with play count greater than or equal to a specified number
+    public void displaySongByPlayNumber() {
+        int playCount;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of plays used to filter songs by play count");
+        try{
+            playCount = scanner.nextInt();
+            boolean songFound = false; // Flag to check if any song matches the criteria
+
+            // Loop through the song list and print songs with play count greater than or equal to the specified number
+            for(int i = 0; i < songList.size(); i++){
+                if(songList.get(i).getPlayCount() >= playCount){
+                    System.out.printf("Song Number %d | Song Name: %s | Artist Name: %s | Play Count: %s %n", i + 1,
+                            songList.get(i).getSongName(), songList.get(i).getArtistName(),
+                            songList.get(i).getPlayCount());
+                    songFound = true; // Set flag to true if a song is found
+                }
+            }
+
+            // If no songs match the criteria, print a message
+            if(!songFound){
+                System.out.println("No songs found with play count greater than or equal to " + playCount);
+            }
+        }catch (Exception e) {
+            System.out.println("An error has occurred"); // Handle any exceptions
+        }
     }
-
 
 }
