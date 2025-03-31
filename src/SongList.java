@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class SongList {
     List<Song> songList = new ArrayList<>(); // ArrayList to store songs
+    Scanner scanner = new Scanner(System.in);
 
     // Constructor to initialise the song list with some sample songs
     public SongList() {
@@ -36,7 +37,6 @@ public class SongList {
 
     // Method to add a new song to the list
     public void addSong() {
-        Scanner scanner = new Scanner(System.in);
         String songName;
         String artistName;
         int playCount;
@@ -62,8 +62,6 @@ public class SongList {
     // Method to remove a song from the list
     public void removeSong() {
         int removeSong;
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Enter the song number in the list below to remove song");
         displaySongList(); // Display the list of songs
 
@@ -93,8 +91,8 @@ public class SongList {
     // Method to display songs with play count greater than or equal to a specified number
     public void displaySongByPlayNumber() {
         int playCount;
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the number of plays used to filter songs by play count");
+
         try{
             playCount = scanner.nextInt();
             boolean songFound = false; // Flag to check if any song matches the criteria
